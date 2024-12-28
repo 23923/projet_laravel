@@ -10,18 +10,13 @@ class CategorieController extends Controller
     /**
      * Afficher la liste des catégories.
      */
-    public function index()
-    {
-        try {
-            $categories = Categorie::all();
-            if ($categories->isEmpty()) {
-                return response()->json(['error' => 'Aucune catégorie trouvée'], 404);
-            }
-            return response()->json($categories, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Problème de récupération des données'], 500);
-        }
-    }
+  public function index()
+{
+    $categories = Categorie::all();
+    return view('categories.index', compact('categories')); // Passe les catégories à la vue
+}
+
+    
 
     /**
      * Créer une nouvelle catégorie.
